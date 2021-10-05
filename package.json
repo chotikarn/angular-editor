@@ -24,6 +24,9 @@
     "type": "git",
     "url": "https://github.com/chotikarn/angular-editor.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^12.1.0",
