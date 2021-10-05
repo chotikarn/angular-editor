@@ -1,5 +1,5 @@
 {
-  "name": "@chotikarn/angular-editor",
+  "name": "@chotikarn/ng-editor",
   "version": "1.2.1",
   "scripts": {
     "ng": "ng",
