@@ -12,7 +12,7 @@
     "build-watch:lib": "ng build angular-editor --watch",
     "test:lib": "ng test angular-editor",
     "build:lib": "ng build angular-editor",
-    "build-prod:lib": "ng build angular-editor --prod",
+    "build:prod:lib": "ng build angular-editor -c production",
     "publish:lib": "npm run copy:readme && npm run copy:changelog && npm run copy:license && npm publish ./dist/angular-editor --tag next",
     "copy:readme": "cpx README.md dist/angular-editor",
     "copy:changelog": "cpx CHANGELOG.md dist/angular-editor",
@@ -20,14 +20,6 @@
     "test-ci": "ng test angular-editor --code-coverage --no-watch --browsers=ChromeHeadless && cat ./coverage/angular-editor/lcov.info | coveralls",
     "prepare": "npm run build:lib"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chotikarn/angular-editor.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^12.1.0",
     "@angular/common": "^12.1.0",
