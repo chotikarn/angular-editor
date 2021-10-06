@@ -1,8 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import {DOCUMENT} from '@angular/common';
 import {CustomClass} from './config';
+import { map } from 'rxjs/operators';
 
 export interface UploadResponse {
   imageUrl: string;
@@ -153,17 +154,18 @@ export class AngularEditorService {
    * Upload file to uploadUrl
    * @param file The file
    */
-  uploadImage(file: File): Observable<HttpEvent<UploadResponse>> {
+  uploadImage(file: File): Observable<UploadResponse> {
 
     const uploadData: FormData = new FormData();
 
     uploadData.append('file', file, file.name);
 
-    return this.http.post<UploadResponse>(this.uploadUrl, uploadData, {
+    const upload = this.http.post<UploadResponse>(this.uploadUrl, uploadData, {
       reportProgress: true,
       observe: 'events',
       withCredentials: this.uploadWithCredentials,
     });
+    return upload.pipe(map(result => ((result as HttpResponse<UploadResponse>).body)));
   }
 
   /**

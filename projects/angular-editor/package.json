@@ -1,6 +1,6 @@
 {
   "name": "@chotikarn/ng-editor",
-  "version": "1.2.1gi",
+  "version": "1.2.3",
   "description": "A simple native WYSIWYG editor for Angular 8+, 12+. Rich Text editor component for Angular.",
   "author": {
     "name": "Chotikarn Rungviboon",

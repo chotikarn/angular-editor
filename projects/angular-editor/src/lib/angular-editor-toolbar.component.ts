@@ -117,7 +117,7 @@ export class AngularEditorToolbarComponent {
 
   @Input() id: string;
   @Input() uploadUrl: string;
-  @Input() upload: (file: File) => Observable<HttpEvent<UploadResponse>>;
+  @Input() upload: (file: File) => Observable<UploadResponse>;
   @Input() showToolbar: boolean;
   @Input() fonts: SelectOption[] = [{label: '', value: ''}];
 
@@ -318,9 +318,9 @@ export class AngularEditorToolbarComponent {
     const file = event.target.files[0];
     if (file.type.includes('image/')) {
         if (this.upload) {
-          this.upload(file).subscribe((response: HttpResponse<UploadResponse>) => this.watchUploadImage(response, event));
+          this.upload(file).subscribe((response: UploadResponse) => this.watchUploadImage(response, event));
         } else if (this.uploadUrl) {
-            this.editorService.uploadImage(file).subscribe((response: HttpResponse<UploadResponse>) => this.watchUploadImage(response, event));
+            this.editorService.uploadImage(file).subscribe((response: UploadResponse) => this.watchUploadImage(response, event));
         } else {
           const reader = new FileReader();
           reader.onload = (e: ProgressEvent) => {
@@ -332,8 +332,8 @@ export class AngularEditorToolbarComponent {
       }
   }
 
-  watchUploadImage(response: HttpResponse<{imageUrl: string}>, event) {
-    const { imageUrl } = response.body;
+  watchUploadImage(response: UploadResponse, event) {
+    const { imageUrl } = response;
     this.editorService.insertImage(imageUrl);
     event.srcElement.value = null;
   }
